@@ -1,0 +1,20 @@
+# Environment variables
+.env
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups
+/backups/*
+!/backups/.gitkeep
+
+# Logs
+/logs/*
+!/logs/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
