@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram.types import Message
@@ -11,13 +13,16 @@ from database import Database
 from backup import DatabaseBackup
 from logger import setup_logger
 
+# Загрузка переменных окружения
+load_dotenv()
+
 # Инициализация логгера
 logger = setup_logger('main')
 
 class TimerBot:
     def __init__(self, config: Config):
         self.config = config
-        self.bot = Bot(token=config.bot_token)
+        self.bot = Bot(token=os.getenv('BOT_TOKEN'))
         self.dp = Dispatcher()
         self.db = Database()
         self.backup = DatabaseBackup("timer_bot.db")
@@ -25,6 +30,7 @@ class TimerBot:
         
         # Регистрация обработчиков команд
         self.register_handlers()
+
 
     def register_handlers(self):
         """Регистрация обработчиков команд бота"""
